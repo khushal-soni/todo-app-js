@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <div class="header">
+                <h2 class="header-title">TODO</h2>
+    
+                <button class="btn-theme-toggle">
+                    <img src="images/icon-moon.svg" alt="theme_changer" class="header__button--icon">
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="todo-form-container">
+                <form class="todo-form">
+                    <input type="text" placeholder="Create a new todo..." class="todo-input" id="todo-form__input">
+                    <button type="submit" class="btn-todo-submit">Add</button>
+                </form>
+            </div>
+
+            <div class="todo-list-container">
+                <div class="todo-items">
+                    <!-- Hidden template for a single todo item -->
+                    <template id="todo-template">
+                        <div class="todo-item">
+                            <!-- Check Box -->
+                            <div class="todo-item__check">
+                                <span class="todo-item__check-img"></span>
+                                <input type="checkbox" class="todo-item__checkbox">
+                            </div>
+
+                            <!-- Text -->
+                            <p class="todo-item__text"></p>
+
+                            <!-- Delete Button -->
+                            <button class="todo-item__delete-btn">
+                                <img src="./images/icon-cross.svg" alt="Delete Todo" width="20px" height="20px">
+                            </button>
+                        </div>
+                    </template>
+
+                    <template id="no-todo-template">
+                        <div class="todo-item">
+                            <p class="todo-item__text">No Todos Found</p>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- CLEAR BTN -->
+                <template id="todo-clear-template">
+                    <div class="todo-clear">
+                        <button class="btn-clear-todo" onclick="clearAllTodos()">
+                            Clear All Tasks
+                        </button>
+
+                        <!-- <button class="btn-clear-completed" onclick="clearCompletedTodos()">
+                            Clear Completed Todo
+                        </button> -->
+                    </div>
+                </template>
+            </div>
+        </main>
+    </div>
+
+    <div class="hero"></div>
+</body>
+
+<script src="./js/index.js"></script>
+</html>
