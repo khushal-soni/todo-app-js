@@ -15,11 +15,15 @@
 // * --------------------------------------
 const localStorage = window.localStorage;
 const TODO_STATUS = ['pending', 'complete'];
+const THEMES = ['light', 'dark'];
 
 // * --------------------------------------
 // * ELEMENTS
 // * --------------------------------------
+const htmlElement = document.documentElement;
+const heroImg = document.querySelector('.hero');
 const themeToggleBtn = document.querySelector('.btn-theme-toggle');
+const themeToggleIcon = themeToggleBtn.firstElementChild;
 const todoForm = document.querySelector('.todo-form');
 const todoItems = document.querySelector('.todo-items');
 const todoListContainer = document.querySelector('.todo-list-container');
@@ -32,9 +36,59 @@ const todoClearTemplate = document.getElementById('todo-clear-template');
 // * --------------------------------------
 // * SCRIPT
 // * --------------------------------------
+
+// * Default Theming - Light
+const theme = localStorage.getItem('theme');
+if (!theme) {
+    localStorage.setItem('theme', THEMES[0]);
+}
+
 window.addEventListener('DOMContentLoaded', (event) => {
+    loadTheme();
     loadAndRenderTodo();
 });
+
+function loadTheme() {
+    const theme = localStorage.getItem('theme');
+
+    if (!theme) {
+        // * Throw an error
+    }
+
+    if (theme === THEMES[0]) {
+        htmlElement.removeAttribute('data-theme', THEMES[1]);
+        heroImg.classList.remove('hero-dark');
+        heroImg.classList.add('hero-light');
+
+        themeToggleIcon.src = 'images/icon-moon.svg';
+    } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+        heroImg.classList.remove('hero-light');
+        heroImg.classList.add('hero-dark');
+
+        themeToggleIcon.src = 'images/icon-sun.svg';
+    }
+}
+
+function toggleTheme (toggleBtn) {
+    const theme = localStorage.getItem('theme');
+
+    if (theme === THEMES[0]) {
+        htmlElement.setAttribute('data-theme', THEMES[1]);
+        heroImg.classList.remove('hero-light');
+        heroImg.classList.add('hero-dark');
+
+        themeToggleIcon.src = 'images/icon-sun.svg';
+        localStorage.setItem('theme', THEMES[1]);
+    } else {
+        htmlElement.removeAttribute('data-theme');
+        heroImg.classList.remove('hero-dark');
+        heroImg.classList.add('hero-light');
+
+        themeToggleIcon.src = 'images/icon-moon.svg';
+        localStorage.setItem('theme', THEMES[0]);
+    }
+}
 
 // * Add Todo
 todoForm.addEventListener('submit', addTodo);

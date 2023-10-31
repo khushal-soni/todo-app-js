@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="hero"></div>
+    
     <div class="app">
         <header>
             <div class="header">
-                <h2 class="header-title">TODO</h2>
+                <h2 class="header-title">TODO'S</h2>
     
-                <button class="btn-theme-toggle">
-                    <img src="images/icon-moon.svg" alt="theme_changer" class="header__button--icon">
+                <button class="btn-theme-toggle" onclick="toggleTheme(this)">
+                    <img src="images/icon-moon.svg" alt="theme_changer" class="header__button--icon" id="btn-theme-toggle-icon">
                 </button>
             </div>
         </header>
@@ -67,11 +69,31 @@
                         </button> -->
                     </div>
                 </template>
+
+                <template id="todo-actions">
+                    <div class="todo-actions-container">
+                        <span class="todo-status btn-clear-todo">1 of 5 Pending</span>
+                        
+                        <div class="todo-filter-container">
+                            <button class="btn-clear-todo" onClick="">All</button>
+                            <button class="btn-clear-todo" onClick="">Completed</button>
+                            <button class="btn-clear-todo" onClick="">Pending</button>
+                        </div>
+                        
+                        <button class="btn-clear-todo">Clear Completed</button>
+                    </div>
+                </template>
             </div>
+
+            <template id="filter-mobile">
+                <div class="filter-container-mobile">
+                    <button class="todo-filter-button" onClick='showAllTodo()'>All</button>
+                    <button class="todo-filter-button" onClick='showCompletedTodo()'>Completed</button>
+                    <button class="todo-filter-button" onClick='showPendingTodo()'>Pending</button>
+                </div>
+            </template>
         </main>
     </div>
-
-    <div class="hero"></div>
 </body>
 
 <script src="./js/index.js"></script>
